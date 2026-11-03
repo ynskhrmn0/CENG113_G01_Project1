@@ -1,0 +1,349 @@
+1001
+Deniz
+Kaya
+Software Development Manager
+Software Development
+Manager
+
+1002
+Ayse
+Yilmaz
+Backend Developer
+Software Development
+Employee
+
+1003
+Emre
+Demir
+Frontend Developer
+Software Development
+Employee
+
+1004
+Selin
+Celik
+Mobile Developer
+Software Development
+Employee
+
+1005
+Can
+Sahin
+Software Developer
+Software Development
+Employee
+
+1006
+Ece
+Yildiz
+Backend Developer
+Software Development
+Employee
+
+1007
+Burak
+Aydin
+Frontend Developer
+Software Development
+Employee
+
+1008
+Derya
+Arslan
+Mobile Developer
+Software Development
+Employee
+
+1009
+Mert
+Dogan
+Software Developer
+Software Development
+Employee
+
+1010
+Irem
+Kilic
+Software Developer
+Software Development
+Employee
+
+1011
+Elif
+Aksoy
+AI Team Lead
+Artificial Intelligence
+Manager
+
+1012
+Kerem
+Yalcin
+AI Researcher
+Artificial Intelligence
+Employee
+
+1013
+Zeynep
+Eren
+Machine Learning Engineer
+Artificial Intelligence
+Employee
+
+1014
+Arda
+Tekin
+Data Scientist
+Artificial Intelligence
+Employee
+
+1015
+Dila
+Kurt
+AI Researcher
+Artificial Intelligence
+Employee
+
+1016
+Onur
+Tas
+Machine Learning Engineer
+Artificial Intelligence
+Employee
+
+1017
+Naz
+Bulut
+Data Scientist
+Artificial Intelligence
+Employee
+
+1018
+Berk
+Gunes
+AI Researcher
+Artificial Intelligence
+Employee
+
+1019
+Sude
+Acar
+Data Engineer
+Artificial Intelligence
+Employee
+
+1020
+Ceren
+Polat
+Research and Development Manager
+Research and Development
+Manager
+
+1021
+Alp
+Keskin
+Research Engineer
+Research and Development
+Employee
+
+1022
+Melis
+Ozturk
+Research Engineer
+Research and Development
+Employee
+
+1023
+Ozan
+Kaplan
+Prototype Developer
+Research and Development
+Employee
+
+1024
+Asli
+Koc
+Research Engineer
+Research and Development
+Employee
+
+1025
+Tolga
+Avci
+Innovation Specialist
+Research and Development
+Employee
+
+1026
+Nehir
+Sari
+Prototype Developer
+Research and Development
+Employee
+
+1027
+Umut
+Erdem
+Research Engineer
+Research and Development
+Employee
+
+1028
+Buse
+Yavuz
+Quality Assurance Manager
+Quality Assurance
+Manager
+
+1029
+Kaan
+Ozdemir
+Software Tester
+Quality Assurance
+Employee
+
+1030
+Esra
+Akin
+Test Automation Engineer
+Quality Assurance
+Employee
+
+1031
+Baris
+Cetin
+Software Tester
+Quality Assurance
+Employee
+
+1032
+Damla
+Aslan
+Quality Assurance Engineer
+Quality Assurance
+Employee
+
+1033
+Eren
+Simsek
+Test Automation Engineer
+Quality Assurance
+Employee
+
+1034
+Yagmur
+Can
+Software Tester
+Quality Assurance
+Employee
+
+1035
+Firat
+Guler
+Quality Assurance Engineer
+Quality Assurance
+Employee
+
+1036
+Pelin
+Karaca
+IT Operations Manager
+IT Operations
+Manager
+
+1037
+Serkan
+Bozkurt
+System Administrator
+IT Operations
+Employee
+
+1038
+Gizem
+Tunc
+Network Engineer
+IT Operations
+Employee
+
+1039
+Hakan
+Ekinci
+IT Support Specialist
+IT Operations
+Employee
+
+1040
+Sena
+Isik
+DevOps Engineer
+IT Operations
+Employee
+
+1041
+Cem
+Erdogan
+System Administrator
+IT Operations
+Employee
+
+1042
+Aylin
+Toprak
+IT Support Specialist
+IT Operations
+Employee
+
+1043
+Bora
+Sezer
+Network Engineer
+IT Operations
+Employee
+
+1044
+Simge
+Altun
+Human Resources Manager
+Human Resources
+Manager
+
+1045
+Oguz
+Duran
+Recruitment Specialist
+Human Resources
+Employee
+
+1046
+Beste
+Uysal
+HR Specialist
+Human Resources
+Employee
+
+1047
+Yigit
+Erol
+Training Specialist
+Human Resources
+Employee
+
+1048
+Ilayda
+Genc
+HR Specialist
+Human Resources
+Employee
+
+1049
+Engin
+Uzun
+Recruitment Specialist
+Human Resources
+Employee
+
+1050
+Lara
+Yilmaz
+Training Specialist
+Human Resources
+Employee
