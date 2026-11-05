@@ -31,28 +31,29 @@ def display_menu():
         display_menu()
 
 def select_department(): #çınar
-    print("""\n
+    print("""
     Departments:
-    1.Software Development
-    2.Artificial Intelligence
-    3.Research and Development
-    4.Quality Assurance
-    5.IT Operations
-    6.Human Resources
-    0.Return to main menu\n""")
+    1. Software Development
+    2. Artificial Intelligence
+    3. Research and Development
+    4. Quality Assurance
+    5. IT Operations
+    6. Human Resources
     
-    department_choice = int(input("Select a department (0-6): "))
+    0. Return to main menu\n""")
     
-    while department_choice != 1 and department_choice != 2 and department_choice != 3 and department_choice != 4 and department_choice != 5 and department_choice != 6 and department_choice != 0:
+    try:
+        department_choice = int(input("Select a department (0-6): "))
+    except ValueError:
         print("\nInvalid department selection. Please try again.")
         department_choice = select_department()
+        
     
     if department_choice == 0:
         print("Turning back to the main menu.")
         display_menu()
-    
     else:
-        return department_choice #returns integer
+        return department_choice #returns integer!!!!!!!!!!!!!!!!!!!!!111!!
 
 def display_employees(department): # almina
         with open("employees.txt") as f:
