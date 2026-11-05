@@ -8,7 +8,7 @@ def display_menu():
     6. Display task summary
     0. Exit\n
     Please select an option: """)
-    
+
     if choosed_option == "1":
         display_employees(select_department())
     elif choosed_option == "2":
@@ -29,10 +29,12 @@ def display_menu():
         display_menu()
 
 def select_department(): #çınar
+    
     print("\n Departments:\n 1.Software Development\n 2.Artificial Intelligence\n 3.Research and Development\n 4.Quality Assurance\n 5.IT Operations\n 6.Human Resources\n 0.Back to main menu\n")
-    department_choice = input("Select a department (0-6): ")
-    if department_choice != "1" or "2" or "3" or "4" or "5" or "6" or "0":
-        print("Invalid department selection. Please try again.")
+    department_choice = int(input("Select a department (0-6): "))
+    
+    if department_choice != 1 or 2 or 3 or 4 or 5 or 6 or 0:
+        print("\nInvalid department selection. Please try again.")
         department_choice = select_department() #recursion to get valid input
     return department_choice #returns string, not int
 
@@ -114,8 +116,6 @@ def display_task_summary(department): #eren
 
 def main():
     display_menu()
-    department_choice = select_department()
-    display_employees(department_choice)
     pass
 
 if __name__ == "__main__":
