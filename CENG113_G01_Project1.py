@@ -29,13 +29,14 @@ def display_menu():
         display_menu()
 
 def select_department(): #çınar
-    print("0.Return to main menu\n Departments:\n 1.Software Development\n 2.Artificial Intelligence\n 3.Research and Development\n 4.Quality Assurance\n 5.IT Operations\n 6.Human Resources")
+    print("\n Departments:\n 1.Software Development\n 2.Artificial Intelligence\n 3.Research and Development\n 4.Quality Assurance\n 5.IT Operations\n 6.Human Resources\n 0.Back to main menu\n")
     department_choice = input("Select a department (0-6): ")
+    if department_choice != "1" or "2" or "3" or "4" or "5" or "6" or "0":
+        print("Invalid department selection. Please try again.")
+        department_choice = select_department() #recursion to get valid input
     return department_choice #returns string, not int
 
 def display_employees(department): # almina
-    while department != "1" or "2" or "3" or "4" or "5" or "6":
-        print("Invalid department.")
         with open("employees.txt") as f:
                 if department == "1":
                     for i in range(1,71):
@@ -55,7 +56,7 @@ def display_employees(department): # almina
                 elif department == "6":
                     for i in range(302,350):
                         print(f.readline())
-    pass
+pass
 
 def assign_weekly_tasks(department): # yunus
     # Collect and save weekly tasks. Allow replacement of existing assignments only after report rejection.
