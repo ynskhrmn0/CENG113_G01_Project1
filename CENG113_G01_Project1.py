@@ -93,7 +93,14 @@ def assign_weekly_tasks(department): # yunus
 
 def generate_meeting_report(department): #eren
     # Collect missing meeting metadata and build the report.
-    pass
+    try:
+        date=input("Enter the meeting date (YYYY-MM-DD): ")
+        if not date: raise ValueError("Date cannot be empty.")
+
+        note=input("Enter the meeting note: ")
+        if not note: raise ValueError("Note cannot be empty.")
+    except ValueError as e:
+        print(f"Invalid input: {e}")
 
 def display_meeting_report(department): #çınar
     # Display the report, or explain that none exists.
