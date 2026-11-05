@@ -4,8 +4,8 @@ def display_menu():
     pass
 
 def select_department(): #çınar
-    # Validate and return a choice from 1 to 6.
-    pass
+    department_choice = input("Select a department (1-6): ")
+    return department_choice
 
 def display_employees(department): # almina
     # Display employees in the selected department.
