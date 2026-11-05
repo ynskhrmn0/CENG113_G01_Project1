@@ -47,10 +47,13 @@ def select_department(): #çınar
     except ValueError:
         print("\nInvalid department selection. Please try again.")
         department_choice = select_department()
-        
+
+    while department_choice > 6 or department_choice < 0:
+        print("\nInvalid department selection. Please try again.")
+        department_choice = select_department()
     
     if department_choice == 0:
-        print("Turning back to the main menu.")
+        print("Turning back to the main menu.\n")
         display_menu()
     else:
         return department_choice #!!!!!!returns integer!!!!!!!!!!!!!!!!!!!!!111!!
@@ -196,13 +199,16 @@ def display_meeting_report(department): #çınar
 
 def authenticate_manager(manager_id, password, department): #almina
     # Return True only when all authentication checks pass.
-    with open("managers.txt", "r") as f:
-        for line in f:
+    count = 0
+    with open("managers.txt", "r") as f_man, open("employees.txt", "r") as f_emp:
+        for line in f_man:
             if manager_id == line.rstrip("\n"):
                 print("Manager ID found.")
+                manager_ID = line.rstrip("\n")
                 break
             else:
                 continue
+            count += 1
         if password == f.readline().rstrip("\n"):
             print("Password verified.")
         
@@ -219,6 +225,7 @@ def display_task_summary(department): #eren
     pass
 
 def main():
+    authenticate_manager("1011", "Team2Week26", 2)
     display_menu()
     pass
 
