@@ -4,6 +4,7 @@ def display_menu():
     pass
 
 def select_department(): #çınar
+    print("Departments:\n 1.Software Development\n 2.Artificial Intelligence\n 3.Research and Development\n 4.Quality Assurance\n 5.IT Operations\n 6.Human Resources")
     department_choice = input("Select a department (1-6): ")
     return department_choice
 
