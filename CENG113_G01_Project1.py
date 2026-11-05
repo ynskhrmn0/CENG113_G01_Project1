@@ -29,33 +29,39 @@ def display_menu():
         display_menu()
 
 def select_department(): #çınar
-    
-    print("\n Departments:\n 1.Software Development\n 2.Artificial Intelligence\n 3.Research and Development\n 4.Quality Assurance\n 5.IT Operations\n 6.Human Resources\n 0.Back to main menu\n")
+    # Validate and return a choice from 1 to 6.
+    print("\n Departments:\n\n 1. Software Development\n 2. Artificial Intelligence\n 3. Research and Development\n 4. Quality Assurance\n 5. IT Operations\n 6. Human Resources\n\n 0. Back to main menu\n")
     department_choice = int(input("Select a department (0-6): "))
     
-    if department_choice != 1 or 2 or 3 or 4 or 5 or 6 or 0:
+    while department_choice != 1 and department_choice != 2 and department_choice != 3 and department_choice != 4 and department_choice != 5 and department_choice != 6 and department_choice != 0:
         print("\nInvalid department selection. Please try again.")
-        department_choice = select_department() #recursion to get valid input
-    return department_choice #returns string, not int
+        department_choice = select_department()
+    
+    if department_choice == 0:
+        print("Turning back to the main menu.")
+        display_menu()
+    
+    else:
+        return department_choice #returns integer
 
 def display_employees(department): # almina
         with open("employees.txt") as f:
-                if department == "1":
+                if department == 1:
                     for i in range(1,71):
                         print(f.readline())
-                elif department == "2":
+                elif department == 2:
                     for i in range(71,134):
                         print(f.readline())
-                elif department == "3":
+                elif department == 3:
                     for i in range(134,190):
                         print(f.readline())
-                elif department == "4":
+                elif department == 4:
                     for i in range(190,246):
                         print(f.readline())
-                elif department == "5":
+                elif department == 5:
                     for i in range(246,302):
                         print(f.readline())
-                elif department == "6":
+                elif department == 6:
                     for i in range(302,350):
                         print(f.readline())
 pass
@@ -107,7 +113,18 @@ def generate_meeting_report(department): #eren
 
 def display_meeting_report(department): #çınar
     # Display the report, or explain that none exists.
-    pass
+    try:
+        with open("meeting_report_N.txt", "r") as f:
+            print(f.read())
+    
+    except FileNotFoundError:
+        print("No meeting report found.")
+    
+    else:
+        print("Meeting report displayed successfully.")
+    
+    finally:
+        pass
 
 def authenticate_manager(manager_id, password, department): #almina
     # Return True only when all authentication checks pass.
