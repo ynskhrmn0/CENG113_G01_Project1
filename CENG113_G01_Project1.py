@@ -56,7 +56,7 @@ def select_department(): #çınar
         print("Turning back to the main menu.\n")
         display_menu()
     else:
-        return department_choice #!!!!!!returns integer!!!!!!!!!!!!!!!!!!!!!111!!
+        return department_choice #RETURNS INTEGER!!!!!!!!!!!!!!!!!!!!!111!!
 
 def display_employees(department): # almina
         with open("employees.txt") as f:
@@ -199,21 +199,6 @@ def display_meeting_report(department): #çınar
 
 def authenticate_manager(manager_id, password, department): #almina
     # Return True only when all authentication checks pass.
-    count = 0
-    with open("managers.txt", "r") as f_man, open("employees.txt", "r") as f_emp:
-        for line in f_man:
-            if manager_id == line.rstrip("\n"):
-                print("Manager ID found.")
-                manager_ID = line.rstrip("\n")
-                break
-            else:
-                continue
-            count += 1
-        if password == f.readline().rstrip("\n"):
-            print("Password verified.")
-        
-            
-
     pass
 
 def review_meeting_report(department): #yunus
@@ -225,8 +210,7 @@ def display_task_summary(department): #eren
     pass
 
 def main():
-    authenticate_manager("1011", "Team2Week26", 2)
-    display_menu()
+    authenticate_manager("1036", "Team5Week26", 5)
     pass
 
 if __name__ == "__main__":
