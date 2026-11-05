@@ -10,7 +10,7 @@ def display_menu():
     6. Display task summary
     0. Exit\n
     Please select an option: """)
-
+    
     if choosed_option == "1":
         display_employees(select_department())
     elif choosed_option == "2":
@@ -31,51 +31,39 @@ def display_menu():
         display_menu()
 
 def select_department(): #çınar
-    print("""
+    print("""\n
     Departments:
-    1. Software Development
-    2. Artificial Intelligence
-    3. Research and Development  n25
-    4. Quality Assurance
-    5. IT Operations
-    6. Human Resources
-    
-    0. Return to main menu\n""")
-    
-    try:
-        department_choice = int(input("Select a department (0-6): "))
-    except ValueError:
-        print("\nInvalid department selection. Please try again.")
-        department_choice = select_department()
-        
-    
-    if department_choice == 0:
-        print("Turning back to the main menu.")
-        display_menu()
-    else:
-        return department_choice #!!!!!!returns integer!!!!!!!!!!!!!!!!!!!!!111!!
+    1.Software Development
+    2.Artificial Intelligence
+    3.Research and Development
+    4.Quality Assurance
+    5.IT Operations
+    6.Human Resources
+    0.Return to main menu\n""")
+    department_choice = input("Select a department (0-6): ")
+    return department_choice #returns string, not int
 
 def display_employees(department): # almina
-        with open("employees.txt") as f:
-                if department == 1:
+        with open("employees.txt", "r") as f:
+                if department == "1":
                     for i in range(1,71):
-                        print(f.readline())
-                elif department == 2:
+                        print(f.readline().rstrip('\n'))
+                elif department == "2":
                     for i in range(71,134):
                         print(f.readline())
-                elif department == 3:
+                elif department == "3":
                     for i in range(134,190):
-                        print(f.readline())
-                elif department == 4:
+                        print(f.readline().rstrip('\n'))
+                elif department == "4":
                     for i in range(190,246):
-                        print(f.readline())
-                elif department == 5:
+                        print(f.readline().rstrip('\n'))
+                elif department == "5":
                     for i in range(246,302):
-                        print(f.readline())
-                elif department == 6:
+                        print(f.readline().rstrip('\n'))
+                elif department == "6":
                     for i in range(302,350):
-                        print(f.readline())
-pass
+                        print(f.readline().rstrip('\n'))
+    pass
 
 def assign_weekly_tasks(department): # yunus
     # Collect and save weekly tasks. Allow replacement of existing assignments only after report rejection.
@@ -181,33 +169,40 @@ def generate_meeting_report(department): #eren
 
 def display_meeting_report(department): #çınar
     # Display the report, or explain that none exists.
-    try:
-        with open("meeting_report_N.txt", "r") as f:
-            print(f.read())
-    
-    except FileNotFoundError:
-        print("No meeting report found.")
-    
-    else:
-        print("Meeting report displayed successfully.")
-    
-    finally:
-        pass
+    pass
 
 def authenticate_manager(manager_id, password, department): #almina
-    # Return True only when all authentication checks pass.
-    with open("managers.txt", "r") as f:
-        for line in f:
-            if manager_id == line.rstrip("\n"):
-                print("Manager ID found.")
-                break
-            else:
+    with open("manager_passwords.txt", "r") as pass_check:
+        for line in pass_check:
+                if manager_id == line.rstrip('\n'):
+                    continue
+                else:
+                    print("Manager ID not found.")
+                    return False
+                    break
+            if password == line.rstrip('\n'):
                 continue
-        if password == f.readline().rstrip("\n"):
-            print("Password verified.")
-        
-            
-
+            else:
+                print("Incorrect password.")
+                return False
+                break
+    with open("employees.txt", "r") as passdep_check:
+        for line in passdep_check:
+            if manager_id == line.rstrip('\n'):
+                for i in range(5):
+                    passdep_check.readline()
+                if department == line.rstrip('\n'):
+                    passdep_check.readline()
+                    if str(passdep_check.readline().rstrip('\n')) == "Manager":
+                        return True
+                    else:
+                        print("User is not a manager.")
+                        return False
+                        break
+                else:
+                    print("Manager does not belong to the selected department.")
+                    return False
+                    break
     pass
 
 def review_meeting_report(department): #yunus
