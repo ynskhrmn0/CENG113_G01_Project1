@@ -35,7 +35,7 @@ def select_department(): #çınar
     Departments:
     1. Software Development
     2. Artificial Intelligence
-    3. Research and Development
+    3. Research and Development  n25
     4. Quality Assurance
     5. IT Operations
     6. Human Resources
@@ -53,7 +53,7 @@ def select_department(): #çınar
         print("Turning back to the main menu.")
         display_menu()
     else:
-        return department_choice #returns integer!!!!!!!!!!!!!!!!!!!!!111!!
+        return department_choice #!!!!!!returns integer!!!!!!!!!!!!!!!!!!!!!111!!
 
 def display_employees(department): # almina
         with open("employees.txt") as f:
@@ -196,6 +196,18 @@ def display_meeting_report(department): #çınar
 
 def authenticate_manager(manager_id, password, department): #almina
     # Return True only when all authentication checks pass.
+    with open("managers.txt", "r") as f:
+        for line in f:
+            if manager_id == line.rstrip("\n"):
+                print("Manager ID found.")
+                break
+            else:
+                continue
+        if password == f.readline().rstrip("\n"):
+            print("Password verified.")
+        
+            
+
     pass
 
 def review_meeting_report(department): #yunus
