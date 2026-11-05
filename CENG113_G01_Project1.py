@@ -1,6 +1,8 @@
 def display_menu():
     # Display the main menu.
-    choosed_option = input("""\n1. Display department employees
+    choosed_option = input("""
+    \nMain Menu:\n
+    1. Display department employees
     2. Assign weekly tasks
     3. Generate meeting report
     4. Display meeting report
@@ -29,8 +31,16 @@ def display_menu():
         display_menu()
 
 def select_department(): #çınar
-    # Validate and return a choice from 1 to 6.
-    print("\n Departments:\n\n 1. Software Development\n 2. Artificial Intelligence\n 3. Research and Development\n 4. Quality Assurance\n 5. IT Operations\n 6. Human Resources\n\n 0. Back to main menu\n")
+    print("""\n
+    Departments:
+    1.Software Development
+    2.Artificial Intelligence
+    3.Research and Development
+    4.Quality Assurance
+    5.IT Operations
+    6.Human Resources
+    0.Return to main menu\n""")
+    
     department_choice = int(input("Select a department (0-6): "))
     
     while department_choice != 1 and department_choice != 2 and department_choice != 3 and department_choice != 4 and department_choice != 5 and department_choice != 6 and department_choice != 0:
@@ -69,36 +79,93 @@ pass
 def assign_weekly_tasks(department): # yunus
     # Collect and save weekly tasks. Allow replacement of existing assignments only after report rejection.
     if department == "1":
-        # Logic for software department
-        dept_name = "Software"
-        pass
+        # Logic for software Development department
+        dept_name = "Software Development"
     elif department == "2":
         # Logic for Artificial Intelligence department
         dept_name = "Artificial Intelligence"
-        pass
     elif department == "3":
         # Logic for Research and Development department
         dept_name = "Research and Development"
-        pass
     elif department == "4":
         # Logic for Quality Assurance department
         dept_name = "Quality Assurance"
-        pass
     elif department == "5":
         # Logic for IT Operations department 
         dept_name = "IT Operations"
-        pass
     elif department == "6":
         # Logic for Human Resources department 
         dept_name = "Human Resources"
-        pass
     elif department == "0":
         print("Turning back to the main menu.")
         display_menu()
     else:
         print("Invalid department selection.")
         assign_weekly_tasks(select_department())
-    pass
+
+    proceed = False
+    task_exists = False
+    try:
+        with open(f"tasks_{department}.txt", "r") as file:
+            task_exists = True
+    except FileNotFoundError:
+        print(f"No existing tasks found for {dept_name} department. You can assign new tasks.")
+        proceed = True
+    if task_exists:
+        try:
+            with open(f"review_{department}.txt", "r") as f_rev:
+                status = f_rev.readline().rstrip('\n')
+                if status == "Rejected":
+                    onay = input("Existing tasks will be overwritten, are you sure? (y/n): ").upper()
+                    if onay == "Y":
+                        proceed = True
+                    else: 
+                        return
+                else:
+                    print("Error: Cannot overwrite existing tasks unless the report has been rejected.")
+                    return
+            print(f"Tasks for {dept_name} department have been successfully assigned.")
+        except FileNotFoundError:
+            print("Error: Review file not found. Cannot determine report status.")
+            return
+
+    if proceed:
+        with open("employees.txt", "r") as emp_file, open(f"tasks_{department}.txt", "w") as task_file:
+            while True:
+                #Read employee details and save them to variables until the end of the file is reached.
+                emp_id = emp_file.readline().rstrip("\n") #this checks if there is a id, if not it means file ended
+                if not emp_id:
+                    break
+                name = emp_file.readline().rstrip("\n")
+                surname = emp_file.readline().rstrip("\n")
+                title = emp_file.readline().rstrip("\n")
+                dept = emp_file.readline().rstrip("\n")
+                role = emp_file.readline().rstrip("\n")
+                empty_line = emp_file.readline().rstrip("\n")
+                if dept == dept_name:
+                    full_name = name + " " + surname
+                    print(f"\nID: {emp_id} | {full_name} | {title}")
+                    
+                    while True:
+                        task_desc = input("Task description: ")
+                        if task_desc != "":
+                            break
+                        print("Error: Task description cannot be empty. Please enter a valid task description.")
+                        
+                    while True:
+                        hours_str = input("Estimated time (1-40 hours): ")
+                        try:
+                            hours = int(hours_str)
+                            if 1 <= hours <= 40:
+                                break
+                            else:
+                                print("Error: Time must be between 1 and 40 hours.")
+                        except ValueError:
+                            print("Error: Please enter a valid integer.")
+                            
+                    task_file.write(f"{emp_id}\n{task_desc}\n{hours}\n\n")
+        print(f"Tasks for {dept_name} department have been successfully assigned.")
+    display_menu()
 
 def generate_meeting_report(department): #eren
     # Collect missing meeting metadata and build the report.
