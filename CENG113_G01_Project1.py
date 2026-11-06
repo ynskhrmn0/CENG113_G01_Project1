@@ -196,7 +196,7 @@ def authenticate_manager(manager_id, password, department): #almina
                     return False
                     break
 
-def review_meeting_report(department): #yunus
+def review_meeting_report(department): #yunus # done
     # Handle login attempts, decision input and report updates.
     if department == "1":
         dept_name = "Software Development"
