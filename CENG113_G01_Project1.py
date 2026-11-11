@@ -43,7 +43,7 @@ def select_department(): #çınar
     0. Return to main menu\n""")
     
     try:
-        department_choice = int(input("Select a department (0-6): "))
+        department_choice = input("Select a department (0-6): ")
     except ValueError:
         print("\nInvalid department selection. Please try again.")
         department_choice = select_department()
@@ -53,7 +53,7 @@ def select_department(): #çınar
         print("Turning back to the main menu.")
         display_menu()
     else:
-        return department_choice #!!!!!!returns integer!!!!!!!!!!!!!!!!!!!!!111!!
+        return department_choice #returns string
 
 def display_employees(department): # almina
         with open("employees.txt", "r") as f:
@@ -180,7 +180,18 @@ def generate_meeting_report(department): #eren
 
 def display_meeting_report(department): #çınar
     # Display the report, or explain that none exists.
-    pass
+    try:
+        with open("meeting_report_N.txt", "r") as f:
+            print(f.read())
+    
+    except FileNotFoundError:
+        print("No meeting report found.")
+    
+    else:
+        print("Meeting report displayed successfully.")
+    
+    finally:
+        pass
 
 def authenticate_manager(manager_id, password, department): #almina
     # Return True only when all authentication checks pass.
