@@ -188,16 +188,17 @@ def display_meeting_report(department): #çınar
         pass
 
 def authenticate_manager(manager_id, password, department): #almina
-    # Return True only when all authentication checks pass.
-    with open("managers.txt", "r") as f:
-        for line in f:
-            if manager_id == line.rstrip("\n"):
-                print("Manager ID found.")
-                break
-            else:
-                continue
-            else:
-                print("Incorrect password.")
+    with open("manager_passwords.txt", "r") as pass_check:
+        for line in pass_check:
+                if manager_id == line.rstrip('\n'):
+                    continue
+                else:
+                    print("Manager ID not found.")
+   
+                if password == line.rstrip('\n'):
+                    pass
+                else:
+                    print("Incorrect password.")
                 return False
     with open("employees.txt", "r") as passdep_check:
         for line in passdep_check:
