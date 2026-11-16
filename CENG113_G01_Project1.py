@@ -55,23 +55,39 @@ def select_department(): #çınar #done
 
 def display_employees(department): # almina #done
         with open("employees.txt", "r") as f:
-                if department == "1":
-                    for i in range(1,71): #10 employees
+                if department == "1": #1-10 / 10 employees
+                    print("")
+                    for i in range(69): 
                         print(f.readline().rstrip('\n'))
-                elif department == "2":
-                    for i in range(71,134): #9 employees
+                elif department == "2": #11-19 / 9 employees
+                    for i in range(69): 
+                        f.readline()
+                    
+                    for i in range(63):
                         print(f.readline().rstrip('\n'))
-                elif department == "3":
-                    for i in range(134,190): #8 employees
+                elif department == "3": #20-27 / 8 employees
+                    for i in range(132): 
+                        f.readline()
+                    
+                    for i in range(56):
                         print(f.readline().rstrip('\n'))
-                elif department == "4":
-                    for i in range(190,246): #8 employees
+                elif department == "4": #28-35 / 8 employees
+                    for i in range(188):
+                        f.readline()
+                    
+                    for i in range(56):
                         print(f.readline().rstrip('\n'))
-                elif department == "5":
-                    for i in range(246,302): #8 employees
+                elif department == "5": #36-43 / 8 employees
+                    for i in range(244):
+                        f.readline()
+
+                    for i in range(56):
                         print(f.readline().rstrip('\n'))
-                elif department == "6":
-                    for i in range(302,350): #7 employees
+                elif department == "6": #44-50 / 7 employees
+                    for i in range(300):
+                        f.readline()
+                    
+                    for i in range(49):
                         print(f.readline().rstrip('\n'))
 
 def assign_weekly_tasks(department): # yunus #done
