@@ -27,7 +27,7 @@ def display_menu():
         print("Exiting the program.")
         exit()
     else:
-        print("Invalid option. Please try again.")
+        print("\nInvalid option. Please try again.")
         display_menu()
 
 def select_department(): #çınar #done
@@ -35,25 +35,23 @@ def select_department(): #çınar #done
     Departments:
     1. Software Development
     2. Artificial Intelligence
-    3. Research and Development  
+    3. Research and Development
     4. Quality Assurance
     5. IT Operations
     6. Human Resources
     
     0. Return to main menu\n""")
+
+    department_choice = input("Select a department (0-6): ")
     
-    try:
-        department_choice = input("Select a department (0-6): ")
-    except ValueError:
+    if department_choice in ["1", "2", "3", "4", "5", "6"]:
+        return department_choice #returns string
+    elif department_choice == "0":
+        print("\nReturning to the main menu.")
+        display_menu()   
+    else:
         print("\nInvalid department selection. Please try again.")
         department_choice = select_department()
-        
-    
-    if department_choice == 0:
-        print("Turning back to the main menu.")
-        display_menu()
-    else:
-        return department_choice #returns string
 
 def display_employees(department): # almina #done
         with open("employees.txt", "r") as f:
