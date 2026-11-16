@@ -55,40 +55,34 @@ def select_department(): #çınar #done
 
 def display_employees(department): # almina #done
         with open("employees.txt", "r") as f:
-                if department == "1": #1-10 / 10 employees
-                    print("")
-                    for i in range(69): 
-                        print(f.readline().rstrip('\n'))
-                elif department == "2": #11-19 / 9 employees
-                    for i in range(69): 
-                        f.readline()
-                    
-                    for i in range(63):
-                        print(f.readline().rstrip('\n'))
-                elif department == "3": #20-27 / 8 employees
-                    for i in range(132): 
-                        f.readline()
-                    
-                    for i in range(56):
-                        print(f.readline().rstrip('\n'))
-                elif department == "4": #28-35 / 8 employees
-                    for i in range(188):
-                        f.readline()
-                    
-                    for i in range(56):
-                        print(f.readline().rstrip('\n'))
-                elif department == "5": #36-43 / 8 employees
-                    for i in range(244):
-                        f.readline()
+            if department == "1":
+                line_start, line_end = 1, 70
+            elif department == "2":
+                line_start, line_end = 71, 133
+            elif department == "3":
+                line_start, line_end = 134, 189
+            elif department == "4":
+                line_start, line_end = 190, 245
+            elif department == "5":
+                line_start, line_end = 246, 301
+            elif department == "6":
+                line_start, line_end = 302, 350
+            else:
+                return
+            
+            line_num = 1
+            while line_num < line_start:
+                #skips lines until the start of the selected department
+                f.readline()
+                line_num += 1
 
-                    for i in range(56):
-                        print(f.readline().rstrip('\n'))
-                elif department == "6": #44-50 / 7 employees
-                    for i in range(300):
-                        f.readline()
-                    
-                    for i in range(49):
-                        print(f.readline().rstrip('\n'))
+            while line_num <= line_end:
+                line = f.readline()
+                if not line:
+                    #stop early if the file ends unexpectedly idk
+                    break
+                print(line.strip("\n"))
+                line_num += 1
 
 def assign_weekly_tasks(department): # yunus #done
     # Collect and save weekly tasks. Allow replacement of existing assignments only after report rejection.
@@ -201,7 +195,7 @@ def display_meeting_report(department): #çınar
     finally:
         pass
 
-def authenticate_manager(manager_id, password, department): #almina
+def authenticate_manager(manager_id, password, department): #almina 
     with open("manager_passwords.txt", "r") as pass_check:
         for line in pass_check:
                 if manager_id == line.rstrip('\n'):
