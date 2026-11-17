@@ -231,6 +231,7 @@ def generate_meeting_report(department): # eren
     # check if the tasks file exists
     try:
         tasks_file = open(f"tasks_{department}.txt", "r")
+        tasks_file.close()
     except FileNotFoundError:
         print("No tasks have been assigned yet. Please assign tasks first using option 2.")
         return
