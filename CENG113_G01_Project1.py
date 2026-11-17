@@ -532,24 +532,6 @@ def review_meeting_report(department): # yunus
     except FileNotFoundError:
         print("\nError: employees.txt file not found. Returning to the main menu.")
         return
-
-    # look up the manager's full name again (employees.txt is wrapped in try/except so a missing file does not crash the program)
-    try:
-        with open("employees.txt", "r") as emp_file:
-            while True:
-                e_id = emp_file.readline().rstrip("\n")
-                if not e_id:
-                    break
-                e_name = emp_file.readline().rstrip("\n")
-                e_surname = emp_file.readline().rstrip("\n")
-                e_title = emp_file.readline().rstrip("\n")
-                e_dept = emp_file.readline().rstrip("\n")
-                e_role = emp_file.readline().rstrip("\n")
-                emp_file.readline() 
-                
-                if e_id == logged_in_id:
-                    manager_full_name = e_name + " " + e_surname
-                    break
             
     except FileNotFoundError:
         print("\nError: employees.txt file not found. Returning to the main menu.")
