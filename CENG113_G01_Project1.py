@@ -54,38 +54,40 @@ Departments:\n
 
 
 def display_employees(department): # almina
-        try:
-            with open("employees.txt", "r") as f:
-                if department == "1":
-                    line_start, line_end = 1, 70
-                elif department == "2":
-                    line_start, line_end = 71, 133
-                elif department == "3":
-                    line_start, line_end = 134, 189
-                elif department == "4":
-                    line_start, line_end = 190, 245
-                elif department == "5":
-                    line_start, line_end = 246, 301
-                elif department == "6":
-                    line_start, line_end = 302, 350
-                else:
-                    return
-                
-                line_num = 1
-                while line_num < line_start:
-                    #skips lines until the start of the selected department
-                    f.readline()
-                    line_num += 1
+    #turns number to department name
+    if department == "1":
+        dept_name = "Software Development"
+    elif department == "2":
+        dept_name = "Artificial Intelligence"
+    elif department == "3":
+        dept_name = "Research and Development"
+    elif department == "4":
+        dept_name = "Quality Assurance"
+    elif department == "5":
+        dept_name = "IT Operations"
+    elif department == "6":
+        dept_name = "Human Resources"
 
-                while line_num <= line_end:
-                    line = f.readline()
-                    if not line:
-                        #stop early if the file ends unexpectedly idk
-                        break
-                    print(line.strip("\n"))
-                    line_num += 1
-        except FileNotFoundError:
-            print("Error: employees.txt file not found.")
+    try:
+        with open("employees.txt", "r") as f:
+            print(f"\nEmployees in {dept_name}:")
+            while True:
+                emp_id = f.readline().rstrip("\n")
+                if emp_id == "": # end of file reached
+                    break
+
+                name = f.readline().rstrip("\n")
+                surname = f.readline().rstrip("\n")
+                title = f.readline().rstrip("\n")
+                dept = f.readline().rstrip("\n")
+                role = f.readline().rstrip("\n")
+                f.readline()  # skip blank separator line
+
+                if dept == dept_name:
+                    print(f"ID: {emp_id} | {name} {surname} | {title}")
+
+    except FileNotFoundError:
+        print("Error: employees.txt file not found.")
             
             
 
