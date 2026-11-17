@@ -7,8 +7,7 @@
 
 def display_menu(): # yunus
     # Display the main menu.
-    try:
-        choosed_option = int(input("""
+   print("""
     Main Menu:\n
         1. Display department employees
         2. Assign weekly tasks
@@ -16,31 +15,10 @@ def display_menu(): # yunus
         4. Display meeting report
         5. Review meeting report
         6. Display task summary
-        0. Exit\n
-        Please select an option: """))
-        if choosed_option == 1:
-            display_employees(select_department())
-        elif choosed_option == 2:
-            assign_weekly_tasks(select_department())
-        elif choosed_option == 3:
-            generate_meeting_report(select_department())
-        elif choosed_option == 4:
-            display_meeting_report(select_department())
-        elif choosed_option == 5:
-            review_meeting_report(select_department())
-        elif choosed_option == 6:
-            display_task_summary(select_department())
-        elif choosed_option == 0:
-            print("Exiting the program.")
-            exit()
-        else:
-            print("\nInvalid option. Please try again.")
-            display_menu()
-    except TypeError:
-        print("\nInvalid option. Please try again.")
-        display_menu()
+        0. Exit\n""")
 
-def select_department(): # çınar
+
+def select_department(): #çınar
     department_choice = input("""
 Departments:\n
     1. Software Development
@@ -109,20 +87,7 @@ def display_employees(department): # almina
         except FileNotFoundError:
             print("Error: employees.txt file not found.")
             
-            line_num = 1
-            while line_num < line_start:
-                #skips lines until the start of the selected department
-                f.readline()
-                line_num += 1
-
-            while line_num <= line_end:
-                line = f.readline()
-                if not line:
-                    #stop early if the file ends unexpectedly idk
-                    break
-                print(line.strip("\n"))
-                line_num += 1
-            f.close()
+            
 
 def assign_weekly_tasks(department): # yunus
     # Collect and save weekly tasks. Allow replacement of existing assignments only after report rejection.
@@ -753,6 +718,16 @@ def display_task_summary(department): # eren
 def main():
     while True:
         display_menu()
+        operation = input("Select operation (1-6): ")
+        if operation == "1": display_employees(select_department())
+        elif operation == "2": assign_weekly_tasks(select_department())
+        elif operation == "3": generate_meeting_report(select_department())
+        elif operation == "4": display_meeting_report(select_department())
+        elif operation == "5": review_meeting_report(select_department())
+        elif operation == "6": display_task_summary(select_department())
+        elif operation == "0": break
+        else:
+            print("Invalid input. Choose an operation (0-6):")
 
 if __name__ == "__main__":
     main()
