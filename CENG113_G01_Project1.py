@@ -36,10 +36,10 @@ Departments:\n
                 return department_choice # returns department choice as string (1-6)
             elif int(department_choice) == 0:
                 print("\nReturning to the main menu.")
-                break
+                break #breaks the loop if choice == 0
             else:
-                raise ValueError
-        except ValueError:
+                raise ValueError #no value error was raised, bu the input doesn't satisfy. redirects user to choose again.
+        except ValueError: #gets user input again if a value error occurs 
             department_choice = input("""
 Departments:\n
     1. Software Development
@@ -727,7 +727,7 @@ def display_task_summary(department): # eren
     print(f"Average hours per assigned task: {average_text}")
 
 def main():
-    while True:
+    while True: 
         display_menu()
         operation = input("Select operation (1-6): ")
         if operation == "1": display_employees(select_department())
@@ -736,9 +736,9 @@ def main():
         elif operation == "4": display_meeting_report(select_department())
         elif operation == "5": review_meeting_report(select_department())
         elif operation == "6": display_task_summary(select_department())
-        elif operation == "0": break
+        elif operation == "0": break #program runs until program is broken by inputting "0"
         else:
-            print("\nInvalid input. Choose an operation (0-6):")
+            print("\nInvalid choice.\nInput must be 0-6.")
 
 if __name__ == "__main__":
     main()
