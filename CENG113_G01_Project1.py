@@ -1,32 +1,42 @@
+# CENG113_G01_Project1.py
+
+# Yunus Kahraman 330201034
+# Eren Kulaksız 340201037
+# Almina Coşkun 340201032
+# Çınar Umut Öveyik 340201007
+
 def display_menu():
     # Display the main menu.
-    choosed_option = input("""
-Main Menu:\n
-    1. Display department employees
-    2. Assign weekly tasks
-    3. Generate meeting report
-    4. Display meeting report
-    5. Review meeting report
-    6. Display task summary
-    0. Exit\n
-    Please select an option: """)
-    
-    if choosed_option == "1":
-        display_employees(select_department())
-    elif choosed_option == "2":
-        assign_weekly_tasks(select_department())
-    elif choosed_option == "3":
-        generate_meeting_report(select_department())
-    elif choosed_option == "4":
-        display_meeting_report(select_department())
-    elif choosed_option == "5":
-        review_meeting_report(select_department())
-    elif choosed_option == "6":
-        display_task_summary(select_department())
-    elif choosed_option == "0":
-        print("Exiting the program.")
-        exit()
-    else:
+    try:
+        choosed_option = int(input("""
+    Main Menu:\n
+        1. Display department employees
+        2. Assign weekly tasks
+        3. Generate meeting report
+        4. Display meeting report
+        5. Review meeting report
+        6. Display task summary
+        0. Exit\n
+        Please select an option: """))
+        if choosed_option == 1:
+            display_employees(select_department())
+        elif choosed_option == 2:
+            assign_weekly_tasks(select_department())
+        elif choosed_option == 3:
+            generate_meeting_report(select_department())
+        elif choosed_option == 4:
+            display_meeting_report(select_department())
+        elif choosed_option == 5:
+            review_meeting_report(select_department())
+        elif choosed_option == 6:
+            display_task_summary(select_department())
+        elif choosed_option == 0:
+            print("Exiting the program.")
+            exit()
+        else:
+            print("\nInvalid option. Please try again.")
+            display_menu()
+    except TypeError:
         print("\nInvalid option. Please try again.")
         display_menu()
 
@@ -43,46 +53,49 @@ Departments:\n
 
     department_choice = input("    Select a department (0-6): ")
     
-    if department_choice in ["1", "2", "3", "4", "5", "6"]:
+    if 0 < int(department_choice) <= 6:
         return department_choice #returns string
     elif department_choice == "0":
         print("\nReturning to the main menu.")
         display_menu() #return to menu if 0
     else:
         print("\nInvalid department selection. Please try again.")
-        department_choice = select_department() #repeat until a valid input
+        select_department() #repeat until a valid input
 
 def display_employees(department): # almina #done
-        with open("employees.txt", "r") as f:
-            if department == "1":
-                line_start, line_end = 1, 70
-            elif department == "2":
-                line_start, line_end = 71, 133
-            elif department == "3":
-                line_start, line_end = 134, 189
-            elif department == "4":
-                line_start, line_end = 190, 245
-            elif department == "5":
-                line_start, line_end = 246, 301
-            elif department == "6":
-                line_start, line_end = 302, 350
-            else:
-                return
+        try:
+            with open("employees.txt", "r") as f:
+                if department == "1":
+                    line_start, line_end = 1, 70
+                elif department == "2":
+                    line_start, line_end = 71, 133
+                elif department == "3":
+                    line_start, line_end = 134, 189
+                elif department == "4":
+                    line_start, line_end = 190, 245
+                elif department == "5":
+                    line_start, line_end = 246, 301
+                elif department == "6":
+                    line_start, line_end = 302, 350
+                else:
+                    return
+                
+                line_num = 1
+                while line_num < line_start:
+                    #skips lines until the start of the selected department
+                    f.readline()
+                    line_num += 1
+
+                while line_num <= line_end:
+                    line = f.readline()
+                    if not line:
+                        #stop early if the file ends unexpectedly idk
+                        break
+                    print(line.strip("\n"))
+                    line_num += 1
+        except FileNotFoundError:
+            print("Error: employees.txt file not found.")
             
-            line_num = 1
-            while line_num < line_start:
-                #skips lines until the start of the selected department
-                f.readline()
-                line_num += 1
-
-            while line_num <= line_end:
-                line = f.readline()
-                if not line:
-                    #stop early if the file ends unexpectedly idk
-                    break
-                print(line.strip("\n"))
-                line_num += 1
-
 def assign_weekly_tasks(department): # yunus #done
     # Collect and save weekly tasks. Allow replacement of existing assignments only after report rejection.
     if department == "1":
@@ -109,6 +122,7 @@ def assign_weekly_tasks(department): # yunus #done
     try:
         with open(f"tasks_{department}.txt", "r") as file:
             task_exists = True
+            file.close()
     except FileNotFoundError:
         print(f"No existing tasks found for {dept_name} department. You can assign new tasks.")
         proceed = True
@@ -125,7 +139,6 @@ def assign_weekly_tasks(department): # yunus #done
                 else:
                     print("Error: Cannot overwrite existing tasks unless the report has been rejected.")
                     return
-            print(f"Tasks for {dept_name} department have been successfully assigned.")
         except FileNotFoundError:
             print("Error: Review file not found. Cannot determine report status.")
             return
@@ -149,7 +162,7 @@ def assign_weekly_tasks(department): # yunus #done
                     
                     while True:
                         task_desc = input("Task description: ")
-                        if task_desc != "":
+                        if task_desc.strip() != "":
                             break
                         print("Error: Task description cannot be empty. Please enter a valid task description.")
                         
@@ -165,10 +178,12 @@ def assign_weekly_tasks(department): # yunus #done
                             print("Error: Please enter a valid integer.")
                             
                     task_file.write(f"{emp_id}\n{task_desc}\n{hours}\n\n")
+            task_file.close()
+            emp_file.close() 
         print(f"Tasks for {dept_name} department have been successfully assigned.")
-    display_menu()
 
-def generate_meeting_report(department):
+
+def generate_meeting_report(department): # eren
     # Collect missing meeting metadata and build the report.
 
     # map the department number to its name. needed when we read the employees.txt file and when we write the report files.
@@ -200,6 +215,7 @@ def generate_meeting_report(department):
             review_file.readline()  # review comment (not needed)
             meeting_date = review_file.readline().strip()
             meeting_note = review_file.readline().strip()
+            review_file.close()
     except FileNotFoundError:
         print(f"No report found for {department_name}. A new report will be generated.")
         status = "" # expected before the first generation
@@ -267,6 +283,7 @@ def generate_meeting_report(department):
                                 task_description = current_description
                                 hours_text = current_hours_text
                             task_id = tasks_file.readline().strip() # set next task's line 1
+                        tasks_file.close()
 
                     # the employee must have exactly one valid task
                     if task_count != 1:
@@ -298,6 +315,7 @@ def generate_meeting_report(department):
                     total_hours += task_hours
 
                 employee_id = employees_file.readline().strip() # set next employee's line 1
+            employees_file.close()
     except FileNotFoundError:
         print("Error: employees.txt was not found.")
         return
@@ -327,6 +345,7 @@ def generate_meeting_report(department):
         review_file.write("-\n")  # review comment
         review_file.write(meeting_date + "\n")
         review_file.write(meeting_note + "\n")
+        review_file.close()
 
     # write meeting_report_N.txt
     with open(f"meeting_report_{department}.txt", "w") as report_file:
@@ -341,6 +360,7 @@ def generate_meeting_report(department):
         report_file.write(f"Number of Employees: {employee_count}\n")
         report_file.write(f"Total Estimated Hours: {total_hours}\n")
         report_file.write(f"Average Estimated Hours: {average_hours:.2f}\n")
+        report_file.close()
 
     print(f"Meeting report for {department_name} was generated (status: Pending Approval).")
 
@@ -350,6 +370,7 @@ def display_meeting_report(department): #çınar
         with open(f"meeting_report_{department}.txt", "r") as f:
             print()
             print(f.read()) #read file content if exists
+            f.close()
     
     except FileNotFoundError:
         print("\nNo meeting report found.") #give an error message if file doesn't exists, continue the program
@@ -463,6 +484,7 @@ def review_meeting_report(department): #yunus # done
             rev_comment = rev_file.readline().rstrip("\n")
             meeting_date = rev_file.readline().rstrip("\n")
             meeting_note = rev_file.readline().rstrip("\n")
+            rev_file.close()
             
         if status != "Pending Approval":
             print(f"This report is already {status}.")
@@ -509,6 +531,7 @@ def review_meeting_report(department): #yunus # done
             if e_id == logged_in_id:
                 manager_full_name = e_name + " " + e_surname
                 break
+        emp_file.close()
     print("\n--- MEETING REPORT ---")
     try:
         with open(f"meeting_report_{department}.txt", "r") as rep_file:
@@ -517,6 +540,7 @@ def review_meeting_report(department): #yunus # done
                 if not line:
                     break
                 print(line)
+            rep_file.close()
     except FileNotFoundError:
         print("Error: Meeting report file is missing.")
         return
@@ -544,6 +568,7 @@ def review_meeting_report(department): #yunus # done
             print("Invalid choice. Please enter A, R, or C.")
     with open(f"review_{department}.txt", "w") as rev_file:
         rev_file.write(f"{new_status}\n{logged_in_id}\n{manager_full_name}\n{comment}\n{meeting_date}\n{meeting_note}\n")
+        rev_file.close()
 
     try:
         employee_count = 0
@@ -587,6 +612,9 @@ def review_meeting_report(department): #yunus # done
             report_file.write(f"Number of employees: {employee_count}\n")
             report_file.write(f"Total estimated hours: {total_hours}\n")
             report_file.write(f"Average estimated hours: {average:.2f}\n\n")
+            emp_file.close()
+            task_file.close()
+            report_file.close()
     except FileNotFoundError:
         print("Error: The tasks file is missing.")
         return
@@ -630,6 +658,7 @@ def display_task_summary(department): #eren
                     employee_count += 1
 
                 employee_id = employees_file.readline().strip()
+            employees_file.close()
     except FileNotFoundError:
         print("Error: employees.txt was not found.")
         return
@@ -652,6 +681,7 @@ def display_task_summary(department): #eren
                     pass  # ignore a record with invalid hours
 
                 task_id = tasks_file.readline().strip()
+            tasks_file.close()
     except FileNotFoundError:
         pass  # no tasks file yet. not a problem, tasks and hours stay at 0
 
