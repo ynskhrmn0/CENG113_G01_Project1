@@ -1,32 +1,42 @@
+# CENG113_G01_Project1.py
+
+# Yunus Kahraman 330201034
+# Eren Kulaksız 340201037
+# Almina Coşkun 340201032
+# Çınar Umut Öveyik 340201007
+
 def display_menu():
     # Display the main menu.
-    choosed_option = input("""
-Main Menu:\n
-    1. Display department employees
-    2. Assign weekly tasks
-    3. Generate meeting report
-    4. Display meeting report
-    5. Review meeting report
-    6. Display task summary
-    0. Exit\n
-    Please select an option: """)
-    
-    if choosed_option == "1":
-        display_employees(select_department())
-    elif choosed_option == "2":
-        assign_weekly_tasks(select_department())
-    elif choosed_option == "3":
-        generate_meeting_report(select_department())
-    elif choosed_option == "4":
-        display_meeting_report(select_department())
-    elif choosed_option == "5":
-        review_meeting_report(select_department())
-    elif choosed_option == "6":
-        display_task_summary(select_department())
-    elif choosed_option == "0":
-        print("Exiting the program.")
-        exit()
-    else:
+    try:
+        choosed_option = int(input("""
+    Main Menu:\n
+        1. Display department employees
+        2. Assign weekly tasks
+        3. Generate meeting report
+        4. Display meeting report
+        5. Review meeting report
+        6. Display task summary
+        0. Exit\n
+        Please select an option: """))
+        if choosed_option == 1:
+            display_employees(select_department())
+        elif choosed_option == 2:
+            assign_weekly_tasks(select_department())
+        elif choosed_option == 3:
+            generate_meeting_report(select_department())
+        elif choosed_option == 4:
+            display_meeting_report(select_department())
+        elif choosed_option == 5:
+            review_meeting_report(select_department())
+        elif choosed_option == 6:
+            display_task_summary(select_department())
+        elif choosed_option == 0:
+            print("Exiting the program.")
+            exit()
+        else:
+            print("\nInvalid option. Please try again.")
+            display_menu()
+    except TypeError:
         print("\nInvalid option. Please try again.")
         display_menu()
 
@@ -42,6 +52,7 @@ Departments:\n
     0. Return to main menu\n""")
 
     department_choice = input("    Select a department (0-6): ")
+<<<<<<< Updated upstream
     try:    
         if int(department_choice) in range(1,7):
             return department_choice #returns string(1-6)
@@ -54,24 +65,53 @@ Departments:\n
     except:
         print("\nInvalid department selection. Enter numbers 1-6.")
         department_choice = select_department() #repeat until a valid input
+=======
+    
+    if 0 < int(department_choice) <= 6:
+        return department_choice #returns string
+    elif department_choice == "0":
+        print("\nReturning to the main menu.")
+        display_menu() #return to menu if 0
+    else:
+        print("\nInvalid department selection. Please try again.")
+        select_department() #repeat until a valid input
+>>>>>>> Stashed changes
 
 def display_employees(department): # almina #done
-        with open("employees.txt", "r") as f:
-            if department == "1":
-                line_start, line_end = 1, 70
-            elif department == "2":
-                line_start, line_end = 71, 133
-            elif department == "3":
-                line_start, line_end = 134, 189
-            elif department == "4":
-                line_start, line_end = 190, 245
-            elif department == "5":
-                line_start, line_end = 246, 301
-            elif department == "6":
-                line_start, line_end = 302, 350
-            else:
-                return
+        try:
+            with open("employees.txt", "r") as f:
+                if department == "1":
+                    line_start, line_end = 1, 70
+                elif department == "2":
+                    line_start, line_end = 71, 133
+                elif department == "3":
+                    line_start, line_end = 134, 189
+                elif department == "4":
+                    line_start, line_end = 190, 245
+                elif department == "5":
+                    line_start, line_end = 246, 301
+                elif department == "6":
+                    line_start, line_end = 302, 350
+                else:
+                    return
+                
+                line_num = 1
+                while line_num < line_start:
+                    #skips lines until the start of the selected department
+                    f.readline()
+                    line_num += 1
+
+                while line_num <= line_end:
+                    line = f.readline()
+                    if not line:
+                        #stop early if the file ends unexpectedly idk
+                        break
+                    print(line.strip("\n"))
+                    line_num += 1
+        except FileNotFoundError:
+            print("Error: employees.txt file not found.")
             
+<<<<<<< Updated upstream
             line_num = 1
             while line_num < line_start:
                 #skips lines until the start of the selected department
@@ -87,6 +127,8 @@ def display_employees(department): # almina #done
                 line_num += 1
             f.close()
 
+=======
+>>>>>>> Stashed changes
 def assign_weekly_tasks(department): # yunus #done
     # Collect and save weekly tasks. Allow replacement of existing assignments only after report rejection.
     if department == "1":
@@ -130,8 +172,11 @@ def assign_weekly_tasks(department): # yunus #done
                 else:
                     print("Error: Cannot overwrite existing tasks unless the report has been rejected.")
                     return
+<<<<<<< Updated upstream
                 f_rev.close()
             print(f"Tasks for {dept_name} department have been successfully assigned.")
+=======
+>>>>>>> Stashed changes
         except FileNotFoundError:
             print("Error: Review file not found. Cannot determine report status.")
             return
@@ -155,7 +200,7 @@ def assign_weekly_tasks(department): # yunus #done
                     
                     while True:
                         task_desc = input("Task description: ")
-                        if task_desc != "":
+                        if task_desc.strip() != "":
                             break
                         print("Error: Task description cannot be empty. Please enter a valid task description.")
                         
@@ -174,7 +219,7 @@ def assign_weekly_tasks(department): # yunus #done
             task_file.close()
             emp_file.close() 
         print(f"Tasks for {dept_name} department have been successfully assigned.")
-    display_menu()
+
 
 def generate_meeting_report(department): # eren
     # Collect missing meeting metadata and build the report.
