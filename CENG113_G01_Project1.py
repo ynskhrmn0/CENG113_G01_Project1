@@ -672,20 +672,19 @@ def display_task_summary(department): # eren
     employee_count = 0
     try:
         with open("employees.txt", "r") as employees_file:
-            # each employee record has 6 lines followed by one blank line
             employee_id = employees_file.readline().strip()
             while employee_id != "":
-                employees_file.readline()  # name (not needed)
-                employees_file.readline()  # surname (not needed)
-                employees_file.readline()  # title (not needed)
+                employees_file.readline() # name (not needed)
+                employees_file.readline() # surname (not needed)
+                employees_file.readline() # title (not needed)
                 employee_department = employees_file.readline().strip()
-                employees_file.readline()  # role (not needed)
-                employees_file.readline()  # blank separator line
+                employees_file.readline() # role (not needed)
+                employees_file.readline() # blank separator line
 
                 if employee_department == department_name:
                     employee_count += 1
 
-                employee_id = employees_file.readline().strip()
+                employee_id = employees_file.readline().strip() # set next employee's line 1
             
     except FileNotFoundError:
         print("Error: employees.txt was not found.")
@@ -711,11 +710,11 @@ def display_task_summary(department): # eren
                 task_id = tasks_file.readline().strip()
             
     except FileNotFoundError:
-        pass  # no tasks file yet. not a problem, tasks and hours stay at 0
+        pass # no tasks file yet. not a problem, tasks and hours stay at 0
 
     
     if assigned_tasks == 0:
-        average_text = "N/A"  # avoid dividing by zero
+        average_text = "N/A" # avoid dividing by zero
     else:
         average_text = f"{total_hours / assigned_tasks:.2f}"
 
