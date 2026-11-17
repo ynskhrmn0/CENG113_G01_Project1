@@ -1,7 +1,7 @@
 def display_menu():
     # Display the main menu.
     choosed_option = input("""
-    \nMain Menu:\n
+Main Menu:\n
     1. Display department employees
     2. Assign weekly tasks
     3. Generate meeting report
@@ -31,27 +31,26 @@ def display_menu():
         display_menu()
 
 def select_department(): #çınar #done
-    print("""\n
-    Departments:
+    print("""
+Departments:\n
     1. Software Development
     2. Artificial Intelligence
     3. Research and Development
     4. Quality Assurance
     5. IT Operations
     6. Human Resources
-    
     0. Return to main menu\n""")
 
-    department_choice = input("Select a department (0-6): ")
+    department_choice = input("    Select a department (0-6): ")
     
     if department_choice in ["1", "2", "3", "4", "5", "6"]:
         return department_choice #returns string
     elif department_choice == "0":
         print("\nReturning to the main menu.")
-        display_menu()   
+        display_menu() #return to menu if 0
     else:
         print("\nInvalid department selection. Please try again.")
-        department_choice = select_department()
+        department_choice = select_department() #repeat until a valid input
 
 def display_employees(department): # almina #done
         with open("employees.txt", "r") as f:
@@ -183,17 +182,15 @@ def generate_meeting_report(department): #eren
 def display_meeting_report(department): #çınar
     # Display the report, or explain that none exists.
     try:
-        with open("meeting_report_N.txt", "r") as f:
-            print(f.read())
+        with open(f"meeting_report_{department}.txt", "r") as f:
+            print()
+            print(f.read()) #read file content if exists
     
     except FileNotFoundError:
-        print("No meeting report found.")
+        print("\nNo meeting report found.") #give an error message if file doesn't exists, continue the program
     
     else:
-        print("Meeting report displayed successfully.")
-    
-    finally:
-        pass
+        print("\nMeeting report displayed successfully.")
 
 def authenticate_manager(manager_id, password, department): #almina 
     with open("manager_passwords.txt", "r") as pass_check:
