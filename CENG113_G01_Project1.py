@@ -36,7 +36,7 @@ def display_menu(): # yunus
         else:
             print("\nInvalid option. Please try again.")
             display_menu()
-    except TypeError:
+    except ValueError:
         print("\nInvalid option. Please try again.")
         display_menu()
 
@@ -109,20 +109,7 @@ def display_employees(department): # almina
         except FileNotFoundError:
             print("Error: employees.txt file not found.")
             
-            line_num = 1
-            while line_num < line_start:
-                #skips lines until the start of the selected department
-                f.readline()
-                line_num += 1
-
-            while line_num <= line_end:
-                line = f.readline()
-                if not line:
-                    #stop early if the file ends unexpectedly idk
-                    break
-                print(line.strip("\n"))
-                line_num += 1
-            f.close()
+            
 
 def assign_weekly_tasks(department): # yunus
     # Collect and save weekly tasks. Allow replacement of existing assignments only after report rejection.
