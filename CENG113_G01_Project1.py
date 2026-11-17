@@ -306,9 +306,7 @@ def generate_meeting_report(department): # eren
                         return
 
                     # task is valid so we add this employee to the report text
-                    employee_details += f"Employee ID: {employee_id}\n"
-                    employee_details += f"Name: {name} {surname}\n"
-                    employee_details += f"Title: {title}\n"
+                    employee_details += f"ID: {employee_id} | {name} {surname} | {title}\n"
                     employee_details += f"Task: {task_description}\n"
                     employee_details += f"Estimated Hours: {task_hours}\n\n"
                     employee_count += 1
