@@ -1,0 +1,59 @@
+Department: Research and Development
+Meeting Date: 21e32ff34
+Meeting Note: gdtgeg
+Status: Pending Approval
+Reviewer ID: -
+Reviewer Name: -
+Review Comment: -
+
+Employee ID: 1020
+Name: Ceren Polat
+Title: Research and Development Manager
+Task: 5g
+Estimated Hours: 5
+
+Employee ID: 1021
+Name: Alp Keskin
+Title: Research Engineer
+Task: 55
+Estimated Hours: 5
+
+Employee ID: 1022
+Name: Melis Ozturk
+Title: Research Engineer
+Task: 5
+Estimated Hours: 5
+
+Employee ID: 1023
+Name: Ozan Kaplan
+Title: Prototype Developer
+Task: 5
+Estimated Hours: 5
+
+Employee ID: 1024
+Name: Asli Koc
+Title: Research Engineer
+Task: 5
+Estimated Hours: 5
+
+Employee ID: 1025
+Name: Tolga Avci
+Title: Innovation Specialist
+Task: 5
+Estimated Hours: 5
+
+Employee ID: 1026
+Name: Nehir Sari
+Title: Prototype Developer
+Task: 4
+Estimated Hours: 4
+
+Employee ID: 1027
+Name: Umut Erdem
+Title: Research Engineer
+Task: 3
+Estimated Hours: 3
+
+Number of Employees: 8
+Total Estimated Hours: 37
+Average Estimated Hours: 4.62
