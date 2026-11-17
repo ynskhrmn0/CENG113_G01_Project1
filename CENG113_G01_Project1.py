@@ -5,7 +5,7 @@
 # Almina Coşkun 340201032
 # Çınar Umut Öveyik 340201007
 
-def display_menu():
+def display_menu(): # yunus
     # Display the main menu.
     try:
         choosed_option = int(input("""
@@ -40,7 +40,7 @@ def display_menu():
         print("\nInvalid option. Please try again.")
         display_menu()
 
-def select_department(): #çınar #done
+def select_department(): # çınar
     print("""
 Departments:\n
     1. Software Development
@@ -52,7 +52,6 @@ Departments:\n
     0. Return to main menu\n""")
 
     department_choice = input("    Select a department (0-6): ")
-<<<<<<< Updated upstream
     try:    
         if int(department_choice) in range(1,7):
             return department_choice #returns string(1-6)
@@ -65,19 +64,8 @@ Departments:\n
     except:
         print("\nInvalid department selection. Enter numbers 1-6.")
         department_choice = select_department() #repeat until a valid input
-=======
-    
-    if 0 < int(department_choice) <= 6:
-        return department_choice #returns string
-    elif department_choice == "0":
-        print("\nReturning to the main menu.")
-        display_menu() #return to menu if 0
-    else:
-        print("\nInvalid department selection. Please try again.")
-        select_department() #repeat until a valid input
->>>>>>> Stashed changes
 
-def display_employees(department): # almina #done
+def display_employees(department): # almina
         try:
             with open("employees.txt", "r") as f:
                 if department == "1":
@@ -111,7 +99,6 @@ def display_employees(department): # almina #done
         except FileNotFoundError:
             print("Error: employees.txt file not found.")
             
-<<<<<<< Updated upstream
             line_num = 1
             while line_num < line_start:
                 #skips lines until the start of the selected department
@@ -127,9 +114,7 @@ def display_employees(department): # almina #done
                 line_num += 1
             f.close()
 
-=======
->>>>>>> Stashed changes
-def assign_weekly_tasks(department): # yunus #done
+def assign_weekly_tasks(department): # yunus
     # Collect and save weekly tasks. Allow replacement of existing assignments only after report rejection.
     if department == "1":
         dept_name = "Software Development"
@@ -172,11 +157,8 @@ def assign_weekly_tasks(department): # yunus #done
                 else:
                     print("Error: Cannot overwrite existing tasks unless the report has been rejected.")
                     return
-<<<<<<< Updated upstream
                 f_rev.close()
             print(f"Tasks for {dept_name} department have been successfully assigned.")
-=======
->>>>>>> Stashed changes
         except FileNotFoundError:
             print("Error: Review file not found. Cannot determine report status.")
             return
@@ -402,7 +384,7 @@ def generate_meeting_report(department): # eren
 
     print(f"Meeting report for {department_name} was generated (status: Pending Approval).")
 
-def display_meeting_report(department): #çınar
+def display_meeting_report(department): # çınar
     # Display the report, or explain that none exists.
     try:
         with open(f"meeting_report_{department}.txt", "r") as f:
@@ -416,7 +398,7 @@ def display_meeting_report(department): #çınar
     else:
         print("\nMeeting report displayed successfully.")
 
-def authenticate_manager(manager_id, password, department): #almina 
+def authenticate_manager(manager_id, password, department): # almina 
     with open("manager_passwords.txt", "r") as pass_check:
         for line in pass_check:
                 if manager_id == line.rstrip('\n'):
@@ -449,7 +431,7 @@ def authenticate_manager(manager_id, password, department): #almina
                     break
         passdep_check.close()
 
-def review_meeting_report(department): #yunus # done
+def review_meeting_report(department): # yunus
     # Handle login attempts, decision input and report updates.
     if department == "1":
         dept_name = "Software Development"
@@ -609,7 +591,7 @@ def review_meeting_report(department): #yunus # done
 
     print(f"The report has been {new_status.lower()}.")
     
-def display_task_summary(department): #eren
+def display_task_summary(department): # eren
     # Calculate and display counts, total hours and average.
 
     if department == "1":
