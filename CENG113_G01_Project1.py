@@ -364,19 +364,17 @@ def generate_meeting_report(department): # eren
 
     print(f"Meeting report for {department_name} was generated (status: Pending Approval).")
 
-def display_meeting_report(department): # çınar
+def display_meeting_report(department):
     # Display the report, or explain that none exists.
     try:
         with open(f"meeting_report_{department}.txt", "r") as f:
             print()
-            print(f.read()) #read file content if exists
-            
-    
+            print(f.read()) #read file content if file exists        
     except FileNotFoundError:
-        print("\nNo meeting report found.") #give an error message if file doesn't exists, continue the program
+        print("\nNo meeting report found.") #give an error message if file doesn't exists, continue with the execution of the program
     
     else:
-        print("Meeting report displayed successfully.")
+        print("Meeting report displayed successfully.") #indicate that file was read
 
 def authenticate_manager(manager_id, password, department): # almina
     authenticated = False
@@ -725,7 +723,7 @@ def display_task_summary(department): # eren
     print(f"Total estimated hours: {total_hours}")
     print(f"Average hours per assigned task: {average_text}")
 
-def main():
+def main(): # çınar
     while True: 
         display_menu()
         operation = input("    Select operation (1-6): ")
@@ -735,9 +733,9 @@ def main():
         elif operation == "4": display_meeting_report(select_department())
         elif operation == "5": review_meeting_report(select_department())
         elif operation == "6": display_task_summary(select_department())
-        elif operation == "0": break #program runs until program is broken by inputting "0"
+        elif operation == "0": break #program runs until it is broken by inputting "0"
         else:
             print("\nInvalid choice.\nInput must be 0-6.")
 
-if __name__ == "__main__":
+if __name__ == "__main__": #execute everything only if it is run as the main program.
     main()
