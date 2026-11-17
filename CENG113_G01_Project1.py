@@ -109,7 +109,6 @@ def display_employees(department): # almina #done
         except FileNotFoundError:
             print("Error: employees.txt file not found.")
             
-<<<<<<< Updated upstream
             line_num = 1
             while line_num < line_start:
                 #skips lines until the start of the selected department
@@ -125,8 +124,6 @@ def display_employees(department): # almina #done
                 line_num += 1
             f.close()
 
-=======
->>>>>>> Stashed changes
 def assign_weekly_tasks(department): # yunus #done
     # Collect and save weekly tasks. Allow replacement of existing assignments only after report rejection.
     if department == "1":
@@ -170,11 +167,8 @@ def assign_weekly_tasks(department): # yunus #done
                 else:
                     print("Error: Cannot overwrite existing tasks unless the report has been rejected.")
                     return
-<<<<<<< Updated upstream
                 f_rev.close()
             print(f"Tasks for {dept_name} department have been successfully assigned.")
-=======
->>>>>>> Stashed changes
         except FileNotFoundError:
             print("Error: Review file not found. Cannot determine report status.")
             return
