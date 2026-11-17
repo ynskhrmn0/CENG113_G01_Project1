@@ -8,14 +8,14 @@
 def display_menu(): # yunus
     # Display the main menu.
    print("""
-    Main Menu:\n
-        1. Display department employees
-        2. Assign weekly tasks
-        3. Generate meeting report
-        4. Display meeting report
-        5. Review meeting report
-        6. Display task summary
-        0. Exit\n""")
+Main Menu:\n
+    1. Display department employees
+    2. Assign weekly tasks
+    3. Generate meeting report
+    4. Display meeting report
+    5. Review meeting report
+    6. Display task summary
+    0. Exit\n""")
 
 
 def select_department(): #çınar
@@ -109,7 +109,7 @@ def assign_weekly_tasks(department): # yunus
         print("Turning back to the main menu.")
         display_menu()
     else:
-        print("Invalid department selection.")
+        print("\nInvalid department selection.")
         assign_weekly_tasks(select_department())
 
     proceed = False
@@ -119,24 +119,24 @@ def assign_weekly_tasks(department): # yunus
             task_exists = True
             
     except FileNotFoundError:
-        print(f"No existing tasks found for {dept_name} department. You can assign new tasks.")
+        print(f"\nNo existing tasks found for {dept_name} department. You can assign new tasks.")
         proceed = True
     if task_exists:
         try:
             with open(f"review_{department}.txt", "r") as f_rev:
                 status = f_rev.readline().rstrip('\n')
                 if status == "Rejected":
-                    onay = input("Existing tasks will be overwritten, are you sure? (y/n): ").upper()
+                    onay = input("\nExisting tasks will be overwritten, are you sure? (y/n): ").upper()
                     if onay == "Y":
                         proceed = True
                     else: 
                         return
                 else:
-                    print("Error: Cannot overwrite existing tasks unless the report has been rejected.")
+                    print("\nError: Cannot overwrite existing tasks unless the report has been rejected.")
                     return
                 
         except FileNotFoundError:
-            print("Error: Review file not found. Cannot determine report status.")
+            print("\nError: Review file not found. Cannot determine report status.")
             return
 
     if proceed:
@@ -179,7 +179,7 @@ def assign_weekly_tasks(department): # yunus
                         task_file.write(f"{emp_id}\n{task_desc}\n{hours}\n\n")
                 
         except FileNotFoundError:
-            print("Error: employees.txt file not found. Returning to the main menu.")
+            print("\nError: employees.txt file not found. Returning to the main menu.")
             return
         # this is the only success message, printed after all tasks are entered and saved
         print(f"Tasks for {dept_name} department have been successfully assigned.")
@@ -202,7 +202,7 @@ def generate_meeting_report(department): # eren
     elif department == "6":
         department_name = "Human Resources"
     else:
-        print("Error: invalid department.")
+        print("\nError: invalid department.")
         return
 
     # read the review_N.txt file
@@ -219,12 +219,12 @@ def generate_meeting_report(department): # eren
             meeting_note = review_file.readline().strip()
             
     except FileNotFoundError:
-        print(f"No report found for {department_name}. A new report will be generated.")
+        print(f"\nNo report found for {department_name}. A new report will be generated.")
         status = "" # expected before the first generation
 
     # report already exists and is not rejected
     if status == "Pending Approval" or status == "Approved":
-        print(f"A report for {department_name} already exists . Status: {status}.")
+        print(f"\nA report for {department_name} already exists . Status: {status}.")
         print("No changes were made.")
         return
 
@@ -235,7 +235,7 @@ def generate_meeting_report(department): # eren
         tasks_file = open(f"tasks_{department}.txt", "r")
         tasks_file.close()
     except FileNotFoundError:
-        print("No tasks have been assigned yet. Please assign tasks first using option 2.")
+        print("\nNo tasks have been assigned yet. Please assign tasks first using option 2.")
         return
 
     # ask if user wants to regenerate the rejected report. if not, we stop here
@@ -245,7 +245,7 @@ def generate_meeting_report(department): # eren
             print("Invalid input: Please enter y or n.")
             answer = input("The report was rejected. Overwrite it with the saved tasks? (y/n): ").strip().lower()
         if answer == "n":
-            print("Cancelled. No changes were made.")
+            print("\nCancelled. No changes were made.")
             return
 
 
@@ -308,9 +308,7 @@ def generate_meeting_report(department): # eren
                         return
 
                     # task is valid so we add this employee to the report text
-                    employee_details += f"Employee ID: {employee_id}\n"
-                    employee_details += f"Name: {name} {surname}\n"
-                    employee_details += f"Title: {title}\n"
+                    employee_details += f"ID: {employee_id} | {name} {surname} | {title}\n"
                     employee_details += f"Task: {task_description}\n"
                     employee_details += f"Estimated Hours: {task_hours}\n\n"
                     employee_count += 1
@@ -366,19 +364,17 @@ def generate_meeting_report(department): # eren
 
     print(f"Meeting report for {department_name} was generated (status: Pending Approval).")
 
-def display_meeting_report(department): # çınar
+def display_meeting_report(department):
     # Display the report, or explain that none exists.
     try:
         with open(f"meeting_report_{department}.txt", "r") as f:
             print()
-            print(f.read()) #read file content if exists
-            
-    
+            print(f.read()) #read file content if file exists        
     except FileNotFoundError:
-        print("\nNo meeting report found.") #give an error message if file doesn't exists, continue the program
+        print("\nNo meeting report found.") #give an error message if file doesn't exists, continue with the execution of the program
     
     else:
-        print("Meeting report displayed successfully.")
+        print("Meeting report displayed successfully.") #indicate that file was read
 
 def authenticate_manager(manager_id, password, department): # almina
     authenticated = False
@@ -495,7 +491,7 @@ def review_meeting_report(department): # yunus
             print("Pending approval report details:")
             
     except FileNotFoundError:
-        print("Error: No existing report found to review.")
+        print("\nError: No existing report found to review.")
         return
 
     attempts = 3
@@ -518,27 +514,6 @@ def review_meeting_report(department): # yunus
     if not auth_success:
         return
 
-    try:
-        with open("employees.txt", "r") as emp_file:
-            while True:
-                e_id = emp_file.readline().rstrip("\n")
-                if not e_id:
-                    break
-                e_name = emp_file.readline().rstrip("\n")
-                e_surname = emp_file.readline().rstrip("\n")
-                e_title = emp_file.readline().rstrip("\n")
-                e_dept = emp_file.readline().rstrip("\n")
-                e_role = emp_file.readline().rstrip("\n")
-                emp_file.readline() 
-                
-                if e_id == logged_in_id:
-                    manager_full_name = e_name + " " + e_surname
-                    break
-            
-    except FileNotFoundError:
-        print("Error: employees.txt file not found. Returning to the main menu.")
-        return
-
     # look up the manager's full name again (employees.txt is wrapped in try/except so a missing file does not crash the program)
     try:
         with open("employees.txt", "r") as emp_file:
@@ -558,7 +533,7 @@ def review_meeting_report(department): # yunus
                     break
             
     except FileNotFoundError:
-        print("Error: employees.txt file not found. Returning to the main menu.")
+        print("\nError: employees.txt file not found. Returning to the main menu.")
         return
 
     print("\n--- MEETING REPORT ---")
@@ -646,7 +621,7 @@ def review_meeting_report(department): # yunus
             report_file.write(f"Average estimated hours: {average:.2f}\n\n")
             
     except FileNotFoundError:
-        print("Error: The tasks file is missing.")
+        print("\nError: The tasks file is missing.")
         return
 
     print(f"\nThe report has been {new_status.lower()}.")
@@ -667,7 +642,7 @@ def display_task_summary(department): # eren
     elif department == "6":
         department_name = "Human Resources"
     else:
-        print("Error: invalid department.")
+        print("\nError: invalid department.")
         return
 
     # count department employees
@@ -727,19 +702,19 @@ def display_task_summary(department): # eren
     print(f"Total estimated hours: {total_hours}")
     print(f"Average hours per assigned task: {average_text}")
 
-def main():
+def main(): # çınar
     while True: 
         display_menu()
-        operation = input("Select operation (1-6): ")
+        operation = input("    Select operation (1-6): ")
         if operation == "1": display_employees(select_department())
         elif operation == "2": assign_weekly_tasks(select_department())
         elif operation == "3": generate_meeting_report(select_department())
         elif operation == "4": display_meeting_report(select_department())
         elif operation == "5": review_meeting_report(select_department())
         elif operation == "6": display_task_summary(select_department())
-        elif operation == "0": break #program runs until program is broken by inputting "0"
+        elif operation == "0": break #program runs until it is broken by inputting "0"
         else:
             print("\nInvalid choice.\nInput must be 0-6.")
 
-if __name__ == "__main__":
+if __name__ == "__main__": #execute everything only if it is run as the main program.
     main()
