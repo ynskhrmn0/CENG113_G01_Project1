@@ -168,7 +168,6 @@ def assign_weekly_tasks(department): # yunus
                     print("Error: Cannot overwrite existing tasks unless the report has been rejected.")
                     return
                 f_rev.close()
-            print(f"Tasks for {dept_name} department have been successfully assigned.")
         except FileNotFoundError:
             print("Error: Review file not found. Cannot determine report status.")
             return
@@ -546,6 +545,27 @@ def review_meeting_report(department): # yunus
     if not auth_success:
         return
 
+    try:
+        with open("employees.txt", "r") as emp_file:
+            while True:
+                e_id = emp_file.readline().rstrip("\n")
+                if not e_id:
+                    break
+                e_name = emp_file.readline().rstrip("\n")
+                e_surname = emp_file.readline().rstrip("\n")
+                e_title = emp_file.readline().rstrip("\n")
+                e_dept = emp_file.readline().rstrip("\n")
+                e_role = emp_file.readline().rstrip("\n")
+                emp_file.readline() 
+                
+                if e_id == logged_in_id:
+                    manager_full_name = e_name + " " + e_surname
+                    break
+            emp_file.close()
+    except FileNotFoundError:
+        print("Error: employees.txt file not found.")
+
+    
     with open("employees.txt", "r") as emp_file:
         while True:
             e_id = emp_file.readline().rstrip("\n")
@@ -566,9 +586,11 @@ def review_meeting_report(department): # yunus
     try:
         with open(f"meeting_report_{department}.txt", "r") as rep_file:
             while True:
-                line = rep_file.readline().rstrip("\n")
+                line = rep_file.readline()
                 if not line:
                     break
+                else:
+                    line = line.rstrip("\n") # we do this so blank seperator lines don't become "" and cause the loop to break
                 print(line)
             rep_file.close()
     except FileNotFoundError:
