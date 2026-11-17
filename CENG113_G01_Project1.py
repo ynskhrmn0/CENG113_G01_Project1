@@ -31,7 +31,7 @@ Main Menu:\n
         display_menu()
 
 def select_department(): #çınar #done
-    print("""
+    department_choice = input("""
 Departments:\n
     1. Software Development
     2. Artificial Intelligence
@@ -39,21 +39,31 @@ Departments:\n
     4. Quality Assurance
     5. IT Operations
     6. Human Resources
-    0. Return to main menu\n""")
+    0. Return to main menu\n
+    Select a department to continue (0-6): """)
 
-    department_choice = input("    Select a department (0-6): ")
-    try:    
-        if int(department_choice) in range(1,7):
-            return department_choice #returns string(1-6)
-        elif department_choice == "0":
-            print("\nReturning to the main menu.")
-            display_menu() #return to menu if 0
-        else:
-            print("\nInvalid department selection. Enter numbers 1-6.")
-            department_choice = select_department() #repeat until a valid input
-    except:
-        print("\nInvalid department selection. Enter numbers 1-6.")
-        department_choice = select_department() #repeat until a valid input
+    while True:  #repeat until a valid input
+        try:
+            if 0 < int(department_choice) <=6:
+                return department_choice # returns department choice as string (1-6)
+            elif int(department_choice) == 0:
+                print("\nReturning to the main menu.")
+                display_menu() #return to menu if 0
+            else:
+                raise ValueError
+        except ValueError:
+            department_choice = input("""
+Departments:\n
+    1. Software Development
+    2. Artificial Intelligence
+    3. Research and Development
+    4. Quality Assurance
+    5. IT Operations
+    6. Human Resources
+    0. Return to main menu\n
+    Invalid input.
+    Enter a number 0-6 to continue: """)
+
 
 def display_employees(department): # almina #done
         with open("employees.txt", "r") as f:
@@ -358,7 +368,7 @@ def display_meeting_report(department): #çınar
         print("\nNo meeting report found.") #give an error message if file doesn't exists, continue the program
     
     else:
-        print("\nMeeting report displayed successfully.")
+        print("Meeting report displayed successfully.")
 
 def authenticate_manager(manager_id, password, department): #almina 
     with open("manager_passwords.txt", "r") as pass_check:
@@ -542,7 +552,7 @@ def review_meeting_report(department): #yunus # done
         print("Error: The tasks file is missing.")
         return
 
-    print(f"The report has been {new_status.lower()}.")
+    print(f"\nThe report has been {new_status.lower()}.")
     
 def display_task_summary(department): #eren
     # Calculate and display counts, total hours and average.
@@ -613,7 +623,7 @@ def display_task_summary(department): #eren
         average_text = f"{total_hours / assigned_tasks:.2f}"
 
     # display summary
-    print(f"Task summary for {department_name}")
+    print(f"\nTask summary for {department_name}")
     print(f"Number of employees: {employee_count}")
     print(f"Number of assigned tasks: {assigned_tasks}")
     print(f"Total estimated hours: {total_hours}")
