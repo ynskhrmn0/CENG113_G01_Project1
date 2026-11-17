@@ -8,14 +8,14 @@
 def display_menu(): # yunus
     # Display the main menu.
    print("""
-    Main Menu:\n
-        1. Display department employees
-        2. Assign weekly tasks
-        3. Generate meeting report
-        4. Display meeting report
-        5. Review meeting report
-        6. Display task summary
-        0. Exit\n""")
+Main Menu:\n
+    1. Display department employees
+    2. Assign weekly tasks
+    3. Generate meeting report
+    4. Display meeting report
+    5. Review meeting report
+    6. Display task summary
+    0. Exit\n""")
 
 
 def select_department(): #çınar
@@ -728,7 +728,7 @@ def display_task_summary(department): # eren
 def main():
     while True: 
         display_menu()
-        operation = input("Select operation (1-6): ")
+        operation = input("    Select operation (1-6): ")
         if operation == "1": display_employees(select_department())
         elif operation == "2": assign_weekly_tasks(select_department())
         elif operation == "3": generate_meeting_report(select_department())
