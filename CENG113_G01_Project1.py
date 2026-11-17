@@ -42,14 +42,17 @@ Departments:\n
     0. Return to main menu\n""")
 
     department_choice = input("    Select a department (0-6): ")
-    
-    if department_choice in ["1", "2", "3", "4", "5", "6"]:
-        return department_choice #returns string
-    elif department_choice == "0":
-        print("\nReturning to the main menu.")
-        display_menu() #return to menu if 0
-    else:
-        print("\nInvalid department selection. Please try again.")
+    try:    
+        if int(department_choice) in range(1,7):
+            return department_choice #returns string(1-6)
+        elif department_choice == "0":
+            print("\nReturning to the main menu.")
+            display_menu() #return to menu if 0
+        else:
+            print("\nInvalid department selection. Enter numbers 1-6.")
+            department_choice = select_department() #repeat until a valid input
+    except:
+        print("\nInvalid department selection. Enter numbers 1-6.")
         department_choice = select_department() #repeat until a valid input
 
 def display_employees(department): # almina #done
