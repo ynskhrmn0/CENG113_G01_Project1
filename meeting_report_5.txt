@@ -1,0 +1,44 @@
+Department: IT Operations
+Meeting Date: 2026-11-18
+Meeting Note: Sample note
+Status: Approved
+Reviewer ID: 1036
+Reviewer Name: Pelin Karaca
+Review Comment: Sample
+
+ID: 1036 | Pelin Karaca | IT Operations Manager
+Task: task
+Estimated Hours: 1
+
+ID: 1037 | Serkan Bozkurt | System Administrator
+Task: task
+Estimated Hours: 2
+
+ID: 1038 | Gizem Tunc | Network Engineer
+Task: task
+Estimated Hours: 3
+
+ID: 1039 | Hakan Ekinci | IT Support Specialist
+Task: task
+Estimated Hours: 4
+
+ID: 1040 | Sena Isik | DevOps Engineer
+Task: task
+Estimated Hours: 5
+
+ID: 1041 | Cem Erdogan | System Administrator
+Task: task
+Estimated Hours: 6
+
+ID: 1042 | Aylin Toprak | IT Support Specialist
+Task: task
+Estimated Hours: 7
+
+ID: 1043 | Bora Sezer | Network Engineer
+Task: task
+Estimated Hours: 8
+
+Number of employees: 8
+Total estimated hours: 36
+Average estimated hours: 4.50
+
