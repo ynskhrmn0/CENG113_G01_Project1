@@ -378,11 +378,11 @@ def authenticate_manager(manager_id, password, department): # almina
         with open("manager_passwords.txt", "r") as pass_check:
             while True:
                 id_line = pass_check.readline()
-                if not id_line:  # End of file reached
+                if id_line == "":  # End of file reached
                     break
                 
                 id_str = id_line.rstrip('\n')
-                if not id_str:  # Skip blank lines
+                if id_str == "":  # Skip empty lines
                     continue
                 
                 pass_str = pass_check.readline().rstrip('\n')
@@ -421,11 +421,11 @@ def authenticate_manager(manager_id, password, department): # almina
         with open("employees.txt", "r") as passdep_check:
             while True:
                 emp_id_line = passdep_check.readline()
-                if not emp_id_line:
+                if emp_id_line =="": #end of the file reached
                     break
                 
                 emp_id = emp_id_line.rstrip('\n')
-                if not emp_id:  
+                if emp_id == "":  # Skip empty lines
                     continue
                 
                 emp_fname = passdep_check.readline().rstrip('\n')
