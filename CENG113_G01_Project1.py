@@ -40,7 +40,7 @@ def display_menu(): # yunus
         print("\nInvalid option. Please try again.")
         display_menu()
 
-def select_department(): #çınar
+def select_department(): # çınar
     department_choice = input("""
 Departments:\n
     1. Software Development
