@@ -357,36 +357,88 @@ def display_meeting_report(department): #çınar
     else:
         print("\nMeeting report displayed successfully.")
 
-def authenticate_manager(manager_id, password, department): #almina 
-    with open("manager_passwords.txt", "r") as pass_check:
-        for line in pass_check:
-                if manager_id == line.rstrip('\n'):
+def authenticate_manager(manager_id, password, department): #almina
+    authenticated = False
+    try:
+        with open("manager_passwords.txt", "r") as pass_check:
+            while True:
+                id_line = pass_check.readline()
+                if not id_line:  # End of file reached
+                    break
+                
+                id_str = id_line.rstrip('\n')
+                if not id_str:  # Skip blank lines
                     continue
-                else:
-                    print("Manager ID not found.")
-   
-                if password == line.rstrip('\n'):
-                    pass
-                else:
-                    print("Incorrect password.")
-                return False
-    with open("employees.txt", "r") as passdep_check:
-        for line in passdep_check:
-            if manager_id == line.rstrip('\n'):
-                for i in range(5):
-                    passdep_check.readline()
-                if department == line.rstrip('\n'):
-                    passdep_check.readline()
-                    if str(passdep_check.readline().rstrip('\n')) == "Manager":
-                        return True
+                
+                pass_str = pass_check.readline().rstrip('\n')
+                
+                if id_str == manager_id:
+                    if pass_str == password:
+                        authenticated = True
                     else:
+                        print("Incorrect password.")
+                        return False
+                    break
+    except FileNotFoundError:
+        print("File not found.")
+        return False
+
+    if not authenticated:
+        print("Manager ID not found.")
+        return False
+
+    manager_found = False
+
+    if department == "1":
+        department = "Software Development"
+    elif department == "2":
+        department = "Artificial Intelligence"
+    elif department == "3":
+        department = "Research and Development"
+    elif department == "4":
+        department = "Quality Assurance"
+    elif department == "5":
+        department = "IT Operations"
+    elif department == "6":
+        department = "Human Resources"
+
+    try:
+        with open("employees.txt", "r") as passdep_check:
+            while True:
+                emp_id_line = passdep_check.readline()
+                if not emp_id_line:
+                    break
+                
+                emp_id = emp_id_line.rstrip('\n')
+                if not emp_id:  
+                    continue
+                
+                emp_fname = passdep_check.readline().rstrip('\n')
+                emp_lname = passdep_check.readline().rstrip('\n')
+                emp_title = passdep_check.readline().rstrip('\n')
+                emp_dept = passdep_check.readline().rstrip('\n')
+                emp_role = passdep_check.readline().rstrip('\n')
+                
+                if emp_id == manager_id:
+                    manager_found = True
+                    
+                    if emp_dept != department:
+                        print(f"Manager does not belong to the selected department. (File has '{emp_dept}', passed '{department}')")
+                        return False
+                        
+                    if emp_role != "Manager":
                         print("User is not a manager.")
                         return False
-                        break
-                else:
-                    print("Manager does not belong to the selected department.")
-                    return False
-                    break
+                    return True
+    except FileNotFoundError:
+        print("employees.txt not found.")
+        return False
+
+    if not manager_found:
+        print("Manager ID not found in employee records.")
+        return False
+
+    return False
 
 def review_meeting_report(department): #yunus # done
     # Handle login attempts, decision input and report updates.
