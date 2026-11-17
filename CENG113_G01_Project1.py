@@ -36,7 +36,7 @@ Departments:\n
                 return department_choice # returns department choice as string (1-6)
             elif int(department_choice) == 0:
                 print("\nReturning to the main menu.")
-                display_menu() #return to menu if 0
+                break
             else:
                 raise ValueError
         except ValueError:
