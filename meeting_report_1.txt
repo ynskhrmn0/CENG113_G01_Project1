@@ -1,0 +1,51 @@
+Department: Software Development
+Meeting Date: 1
+Meeting Note: 1
+Status: Pending Approval
+Reviewer ID: -
+Reviewer Name: -
+Review Comment: -
+
+ID: 1001 | Deniz Kaya | Software Development Manager
+Task: 1
+Estimated Hours: 1
+
+ID: 1002 | Ayse Yilmaz | Backend Developer
+Task: 1
+Estimated Hours: 1
+
+ID: 1003 | Emre Demir | Frontend Developer
+Task: 11
+Estimated Hours: 1
+
+ID: 1004 | Selin Celik | Mobile Developer
+Task: 1
+Estimated Hours: 1
+
+ID: 1005 | Can Sahin | Software Developer
+Task: 1
+Estimated Hours: 1
+
+ID: 1006 | Ece Yildiz | Backend Developer
+Task: 1
+Estimated Hours: 11
+
+ID: 1007 | Burak Aydin | Frontend Developer
+Task: 1
+Estimated Hours: 1
+
+ID: 1008 | Derya Arslan | Mobile Developer
+Task: 1
+Estimated Hours: 1
+
+ID: 1009 | Mert Dogan | Software Developer
+Task: 11
+Estimated Hours: 1
+
+ID: 1010 | Irem Kilic | Software Developer
+Task: 1
+Estimated Hours: 1
+
+Number of Employees: 10
+Total Estimated Hours: 20
+Average Estimated Hours: 2.00
